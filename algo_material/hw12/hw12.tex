@@ -1,0 +1,275 @@
+\documentclass[11pt]{article}
+
+\newcommand{\yourname}{Zerun Tian}
+\newcommand{\yourcollaborators}{}
+
+\def\comments{0}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1in}
+
+%format and packages
+
+%\usepackage{algorithm, algorithmic}
+\usepackage{algpseudocode}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{framed}
+\usepackage{verbatim}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{microtype}
+\usepackage{kpfonts}
+\usepackage{graphicx}       % upload image
+\usepackage{palatino}
+	\DeclareMathAlphabet{\mathtt}{OT1}{cmtt}{m}{n}
+	\SetMathAlphabet{\mathtt}{bold}{OT1}{cmtt}{bx}{n}
+	\DeclareMathAlphabet{\mathsf}{OT1}{cmss}{m}{n}
+	\SetMathAlphabet{\mathsf}{bold}{OT1}{cmss}{bx}{n}
+	\renewcommand*\ttdefault{cmtt}
+	\renewcommand*\sfdefault{cmss}
+	\renewcommand{\baselinestretch}{1.06}
+\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{DarkGreen}{rgb}{0.15,0.5,0.15}
+\definecolor{DarkRed}{rgb}{0.6,0.2,0.2}
+\definecolor{DarkBlue}{rgb}{0.2,0.2,0.6}
+\definecolor{DarkPurple}{rgb}{0.4,0.2,0.4}
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+	linktocpage=true,
+	colorlinks=true,				% false: boxed links; true: colored links
+	linkcolor=DarkBlue,		% color of internal links
+	citecolor=DarkBlue,	% color of links to bibliography
+	urlcolor=DarkBlue,		% color of external links
+}
+
+\usepackage[boxruled,vlined,nofillcomment]{algorithm2e}
+	\SetKwProg{Fn}{Function}{\string:}{}
+	\SetKwFor{While}{While}{}{}
+	\SetKwFor{For}{For}{}{}
+	\SetKwIF{If}{ElseIf}{Else}{If}{:}{ElseIf}{Else}{:}
+	\SetKw{Return}{Return}
+	
+
+%enclosure macros
+\newcommand{\paren}[1]{\ensuremath{\left( {#1} \right)}}
+\newcommand{\bracket}[1]{\ensuremath{\left\{ {#1} \right\}}}
+\renewcommand{\sb}[1]{\ensuremath{\left[ {#1} \right\]}}
+\newcommand{\ab}[1]{\ensuremath{\left\langle {#1} \right\rangle}}
+
+%probability macros
+\newcommand{\ex}[2]{{\ifx&#1& \mathbb{E} \else \underset{#1}{\mathbb{E}} \fi \left[#2\right]}}
+\newcommand{\pr}[2]{{\ifx&#1& \mathbb{P} \else \underset{#1}{\mathbb{P}} \fi \left[#2\right]}}
+\newcommand{\var}[2]{{\ifx&#1& \mathrm{Var} \else \underset{#1}{\mathrm{Var}} \fi \left[#2\right]}}
+
+%useful CS macros
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\pmo}{\{\pm1\}}
+\newcommand{\getsr}{\gets_{\mbox{\tiny R}}}
+\newcommand{\card}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\negl}{\mathrm{negl}}
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\eqand}{\qquad \textrm{and} \qquad}
+\newcommand{\ind}[1]{\mathbb{I}\{#1\}}
+\newcommand{\sslash}{\ensuremath{\mathbin{/\mkern-3mu/}}}
+
+%mathbb
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+%mathcal
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+%theorem macros
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{clm}[thm]{Claim}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
+
+\newcommand{\instructor}{Virgil Pavlu}
+\newcommand{\hwnum}{12}
+\newcommand{\hwdue}{Wednesday, May 20 at 11:59pm via \href{https://gradescope.com/courses/229309}{Gradescope}}
+
+\theoremstyle{theorem}
+\newtheorem{prob}{}
+\newtheorem{sol}{Solution}
+
+\definecolor{cit}{rgb}{0.05,0.2,0.45} 
+\newcommand{\solution}{\medskip\noindent{\color{DarkBlue}\textbf{Solution:}}}
+
+\begin{document}
+{\Large 
+\begin{center}{CS5800: Algorithms} --- Spring '21 --- \instructor \end{center}}
+{\large
+\vspace{10pt}
+\noindent Homework~\hwnum \vspace{2pt}\\
+Submit via \href{https://www.gradescope.com/courses/232127}{Gradescope}}
+
+\bigskip
+{\large \noindent Name: \yourname }
+
+{\large \noindent Collaborators: \yourcollaborators}
+
+\vspace{15pt}
+
+{\large \noindent Instructions:}
+
+\begin{itemize}
+
+\item Make sure to put your name on the first page.  If you are using the \LaTeX~template we provided, then you can make sure it appears by filling in the \texttt{yourname} command.
+
+\item Please review the grading policy outlined in the course information page.
+
+\item You must also write down with whom you worked on the assignment.  If this changes from problem to problem, then you should write down this information separately with each problem.
+
+\item Problem numbers (like Exercise 3.1-1) are corresponding to CLRS $3^{rd}$ edition.  While the  $2^{nd}$ edition  has  similar  problems  with  similar  numbers,  the  actual  exercises  and their solutions are different, so make sure you are using the $3^{rd}$ edition.
+
+\end{itemize}
+
+%%% Problem 1 %%%
+\newpage
+\begin{prob} \textbf{(20 points)} Exercise 26.1-3.
+\end{prob}
+
+Suppose that a flow network $G = (V, E)$ violates the assumption that the network contains a path $s \leadsto v \leadsto t$ for all vertices $v \in V$. Let $u$ be a vertex for which there is no path $s \leadsto u \leadsto t$. Show that there must exist a maximum flow $f$ in $G$ such that $f(u, v) = f(v, u) = 0$ for all vertices $v \in V$.
+
+\solution
+
+For vertices $v$ who are not immediately connected to $u$, i.e. $(u, v) \not\in E$ and $(v, u) \not\in E$, it is trivial to show that $f(u, v) = f(v, u) = 0$ in any case, including the case of maximum flow. According to the observation at the end of page 709 of CLRS, we know $f(u, v) = 0$ for $(u, v) \not\in E$.
+
+For vertices $v$ who are immediately connected to $u$, i.e. $(u, v) \in E$ or $(v, u) \in E$, let's show that in a maximum flow, $f(u, v) = f(v, u) = 0$. If flows on those edges were ever non-zero, to preserve the flow conservation property, there will be flow out when there is flow in at $u$, and vice versa. In this case, given the network contains a path $s \leadsto v \leadsto t$ for all vertices $v \in V - \{u\}$, there would also be a path $s \leadsto u \leadsto t$: a contradiction. 
+
+Since we know the vertex $u$ is not in any path from $s$ to $t$, there will be no augmenting path flowing through the vertex $u$. By running the $\textproc{\textsc{Ford-Fulkerson}}$ algorithm, we can find a maximum flow without ever updating $(u, v)$ and $(v, u)$ edges. Hence, those edges incoming to $u$ and outgoing from $u$ have the initial zero flow.
+
+Therefore, we showed that for all vertices $v \in V$, $f(u, v) = f(v, u) = 0$.
+
+
+%%% Problem 2 %%%
+\newpage
+\begin{prob} \textbf{(20 points)} Exercise 26.1-4.
+\end{prob}
+
+Let $f$ be a flow in a network, and let $\alpha$ be a real number. The $\textbf{\textit{scalar flow product}}$, denoted $\alpha f$, is a function from $V \times V$ to $\mathbb{R}$ defined by
+
+$(\alpha f)(u, v) = \alpha \cdot f(u, v)$.
+
+Prove that the flows in a network form a $\textbf{\textit{convex set}}$. That is, show that if $f_1$ and $f_2$ are flows, then so is $\alpha f_1 + (1 - \alpha) f_2$ for all $\alpha$ in the range $0 \le \alpha \le 1$.
+
+\solution
+
+To show $\alpha f_1 + (1 - \alpha) f_2$ is a flow, we test if it satisfies the flow properties: capacity constraint and flow conservation.
+
+Because $f_1$ and $f_2$ are valid flows, for all $u, v \in V$, we have that $f_1(u, v) \le c(u, v)$ and $f_2(u, v) \le c(u, v)$. Then, we derive,
+\[
+\begin{split}
+\alpha f_1 + (1 - \alpha) f_2 
+&=   \alpha f_1(u, v) + (1 - \alpha)f_2(u, v) \\
+&\le \alpha c(u, v) + (1 - \alpha) c(u, v) \\
+&=   c(u, v)
+\end{split}
+\]
+Now that the new flow satisfies the capacity constraint, we check if it maintains flow conservation. Both $f_1$ and $f_2$ satisfy the capacity constraint where $\sum_{v \in V} f_1(v, u) = \sum_{v \in V} f_1(u, v)$ and $\sum_{v \in V} f_2(v, u) = \sum_{v \in V} f_2(u, v)$ for every $u \in V - \{s, t\}$. Then, the new flow has the form for every vertex $u$, 
+\[
+\begin{split}
+\sum_{v \in V} \alpha f_1(v, u) + (1 - \alpha) f_2(v, u)
+&= \alpha \sum_{v \in V} f_1(v, u) + (1 - \alpha) \sum_{v \in V} f_2(v, u) \\
+&= \alpha \sum_{v \in V} f_1(u, v) + (1 - \alpha) \sum_{v \in V} f_2(u, v) \\
+&= \sum_{v \in V} \alpha f_1(u, v) + (1 - \alpha) f_2(u, v)
+\end{split}
+\]
+The flow conservation holds because the flow in equals flow out w.r.t every vertex $u \in V - \{s, t\}$. Therefore, the flows form a convex set.
+
+
+%%% Problem 3 %%%
+\newpage
+\begin{prob} \textbf{(20 points)} Exercise 26.2-2.
+\end{prob}
+
+In Figure 26.1(b), what is the flow across the cut $(\{s, v_2, v_4\}, \{v_1, v_3, t\})$? What is the capacity of this cut?
+
+\solution
+
+\includegraphics[scale=0.62]{./hw12q3.png}
+
+The flow of the cut is:
+\[
+\begin{split}
+\sum_{u \in S; v \in V} f(u, v) 
+&= f(s, v_1) + f(v_2, v_1) + (- f(v_3, v_2)) + f(v_4, v_3) + f(v_4, t) \\
+&= 11 + 1 - 4 + 7 + 4 = 19 \\
+\end{split}
+\]
+
+The capacity of the cut is:
+\[
+\begin{split}
+\sum_{u \in S; v \in V} w(u, v) 
+&= w(s, v_1) + w(v_2, v_1) + w(v_2, v_3) + w(v_4, v_3) + w(v_4, t) \\
+&= 16 + 4 + 0 + 7 + 4 = 31 \\
+\end{split}
+\]
+
+%%% Problem 4 %%%
+\newpage
+\begin{prob} \textbf{(Extra Credit)} Exercise 26.2-10.
+\end{prob}
+\solution
+
+
+%%% Problem 5 %%%
+\newpage
+\begin{prob} \textbf{(30 points)} Implement Push-Relabel for finding maximum flow.
+
+Extra Credit: use relabel-to-front idea from Chapter 26.5 with the Discharge procedure.
+\end{prob}
+\solution
+
+Code is not yet complete. Will do the demo after the final.
+
+
+%%% Problem 6 %%%
+\newpage
+\begin{prob} \textbf{(15 points)} Explain in a brief paragraph the following sentence from textbook page 737: “To make the preflow a legal flow, the algorithm then sends the excess collected in the reservoirs of overflowing vertices back to the source by continuing to relabel vertices to above the fixed height $|V|$ of the source”.
+\end{prob}
+\solution
+
+When we can no longer send flows to the sink, i.e. maximum flow is reached using the push-relabel method, we will have some overflowing vertices. A vertex $u$ is overflowing if it has some excess in it, i.e. $e(u) > 0$, which is caused by having flow out less than flow in. Since a legal flow needs to satisfy the flow conservation property, we will have to send the excess back to where it is originated until the source through the "reverse" edges. To be able to send flows back to the source, we have to increase the height of those overflowing vertices above $|V|$.
+
+
+%%% Problem 7 EC %%%
+\newpage
+\begin{prob} \textbf{(Extra Credit)} Exercise 26.4.4.
+\end{prob}
+\solution
+
+\end{document}
